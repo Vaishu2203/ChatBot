@@ -3,7 +3,7 @@ from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='template')
 
 english_bot = ChatBot("Chatterbot", storage_adapter="chatterbot.storage.SQLStorageAdapter")
 trainer = ChatterBotCorpusTrainer(english_bot)
@@ -17,7 +17,7 @@ def home():
 
 @app.route("/get")
 def get_bot_response():
-    userText = request.args.get("msg")
+    userText = request.args.get('msg')
     return str(english_bot.get_response(userText))
 
 if __name__ == '__main__':
